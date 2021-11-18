@@ -2,6 +2,11 @@ from PyPDF2 import PdfFileMerger
 import PySimpleGUI as sg
 
 def merge_pdfs(pdfs: list, out_name: str):
+    """Takes the PDF documents, whose file paths are in list, and merges them to one PDF document. The resulting document is saved with the name out_name.
+    
+    :param pdfs: list of file paths to PDF documents
+    :param out_name: the name of the resulting PDF document
+    """
     merger = PdfFileMerger()
     
     for pdf in pdfs:
