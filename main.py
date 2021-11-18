@@ -15,7 +15,7 @@ col1 = [[sg.Text("Wähle eine Datei:"), sg.Input(), sg.FileBrowse(key="-IN-")],
 col2 = [[sg.Multiline(size=(100, 10), key="-MULTI-")],
         [sg.Text("Name der Augabe-Datei:"), sg.Input(key="-OUTNAME-"), sg.Button("Datei speichern")]]
 
-layout = [[sg.Column(col1), sg.Column(col2)]]
+layout = [[sg.Column(col1), sg.VSeperator(), sg.Column(col2)]]
 
 window = sg.Window("PDFmerger", layout)
 pdfs = []
