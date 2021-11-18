@@ -17,7 +17,8 @@ def main():
     
     col1 = [[sg.Text("Wähle eine Datei:"), sg.Input(), sg.FileBrowse(key="-IN-")],
               [sg.Button("Datei hinzufügen")]]
-    col2 = [[sg.Listbox(values=pdfs, size=(100, 10), key="-LIST-", enable_events=True)],
+    col2 = [[sg.Listbox(values=pdfs, size=(100, 10), key="-LIST-", enable_events=True, select_mode="LISTBOX_SELECT_MODE_SINGLE")],
+            [sg.Button("Datei entfernen")],
             [sg.Text("Name der Augabe-Datei:"), sg.Input(key="-OUTNAME-"), sg.Button("Datei speichern")]]
 
     layout = [[sg.Column(col1), sg.VSeperator(), sg.Column(col2)]]
@@ -34,6 +35,11 @@ def main():
             window.refresh()
         elif event == "Datei speichern":
             merge_pdfs(pdfs, values["-OUTNAME-"])
+        elif event == "Datei entfernen":
+            pdf_del = window["-LIST-"].get()
+            pdfs.remove(pdf_del[0])
+            window["-LIST-"].update(values=pdfs)
+            window.refresh()
 
 
 if __name__ == "__main__":
