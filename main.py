@@ -13,15 +13,16 @@ def merge_pdfs(pdfs: list, out_name: str):
 def main():
     sg.theme("SystemDefaultForReal")
     
+    pdfs = []
+    
     col1 = [[sg.Text("Wähle eine Datei:"), sg.Input(), sg.FileBrowse(key="-IN-")],
               [sg.Button("Datei hinzufügen")]]
-    col2 = [[sg.Multiline(size=(100, 10), key="-MULTI-")],
+    col2 = [[sg.Listbox(values=pdfs, size=(100, 10), key="-LIST-", enable_events=True)],
             [sg.Text("Name der Augabe-Datei:"), sg.Input(key="-OUTNAME-"), sg.Button("Datei speichern")]]
 
     layout = [[sg.Column(col1), sg.VSeperator(), sg.Column(col2)]]
 
-    window = sg.Window("PDFmerger", layout)
-    pdfs = []
+    window = sg.Window("PDFmerger", layout).Finalize()
 
     while True:
         event, values = window.read()
@@ -29,7 +30,8 @@ def main():
             break
         elif event == "Datei hinzufügen":
             pdfs.append(values["-IN-"])
-            window["-MULTI-"].print(pdfs[-1])
+            window["-LIST-"].update(values=pdfs)
+            window.refresh()
         elif event == "Datei speichern":
             merge_pdfs(pdfs, values["-OUTNAME-"])
 
