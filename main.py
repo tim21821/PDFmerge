@@ -40,7 +40,7 @@ def main():
               [sg.Button("Datei hinzufügen")]]
     col2 = [[sg.Listbox(values=pdfs, size=(100, 10), key="-LIST-", enable_events=True, select_mode="LISTBOX_SELECT_MODE_SINGLE")],
             [sg.Button("Datei entfernen")],
-            [sg.Text("Name der Augabe-Datei:"), sg.Input(key="-OUTNAME-"), sg.Button("Datei speichern")]]
+            [sg.Text("Name der Augabe-Datei:"), sg.Input("Merge.pdf", key="-OUTNAME-"), sg.Button("Datei speichern")]]
 
     layout = [[sg.Column(col1), sg.VSeperator(), sg.Column(col2)]]
 
